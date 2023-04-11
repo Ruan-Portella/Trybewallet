@@ -1,6 +1,8 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 // import { ADD_USER } from '../actions';
 
+import { SUCCEEDED_REQUEST } from '../actions';
+
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
@@ -10,12 +12,11 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
-  case 'RIAN': {
+  case SUCCEEDED_REQUEST:
     return {
       ...state,
-      email: payload,
+      currencies: payload,
     };
-  }
   default:
     return state;
   }
