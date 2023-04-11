@@ -7,7 +7,7 @@ class Header extends Component {
     const { expenses } = this.props;
     let Sum = 0;
     expenses.forEach((despesa) => {
-      Sum += Number(despesa.value) * Number(despesa.exchangesRates[despesa.currency].ask);
+      Sum += Number(despesa.value) * Number(despesa.exchangeRates[despesa.currency].ask);
     });
     return Sum.toFixed(2);
   };
