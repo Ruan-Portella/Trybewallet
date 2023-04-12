@@ -1,4 +1,5 @@
 export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 export const SUCCEEDED_REQUEST = 'SUCCEEDED_REQUEST';
 export const SUCCEEDED_EXPENSE = 'SUCCEEDED_EXPENSE';
 
@@ -14,6 +15,11 @@ const succeedRequest = (payload) => ({
 
 const succeedExpense = (payload) => ({
   type: SUCCEEDED_EXPENSE,
+  payload,
+});
+
+export const removeExpense = (payload) => ({
+  type: REMOVE_USER,
   payload,
 });
 
