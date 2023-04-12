@@ -3,6 +3,9 @@ import userEvent from '@testing-library/user-event';
 import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
+const EMAIL_INPUT = 'email-input';
+const PASSOWORD_INPUT = 'password-input';
+
 describe('Testa a Pagina Login', () => {
   test('A rota para esta página é "/"', () => {
     const { history } = renderWithRouterAndRedux(<Login />);
@@ -12,10 +15,10 @@ describe('Testa a Pagina Login', () => {
 
   test('É renderizado um elemento para que o usuário insira seu email e senha', () => {
     renderWithRouterAndRedux(<Login />);
-    const InputName = screen.getByTestId('email-input');
+    const InputName = screen.getByTestId(EMAIL_INPUT);
     expect(InputName).toBeInTheDocument();
 
-    const InputEmail = screen.getByTestId('password-input');
+    const InputEmail = screen.getByTestId(PASSOWORD_INPUT);
     expect(InputEmail).toBeInTheDocument();
   });
 
@@ -29,9 +32,9 @@ describe('Testa a Pagina Login', () => {
 
   test('Foram realizadas as seguintes verificações nos campos de email, senha e botão:', () => {
     renderWithRouterAndRedux(<Login />);
-    const InputName = screen.getByTestId('email-input');
+    const InputName = screen.getByTestId(EMAIL_INPUT);
 
-    const InputEmail = screen.getByTestId('password-input');
+    const InputEmail = screen.getByTestId(PASSOWORD_INPUT);
 
     const buttonEl = screen.getByRole('button', {
       name: /entrar/i,
@@ -52,9 +55,9 @@ describe('Testa a Pagina Login', () => {
   });
   test('Testa se login manda para a rota /carteira', async () => {
     const { history } = renderWithRouterAndRedux(<Login />);
-    const InputName = screen.getByTestId('email-input');
+    const InputName = screen.getByTestId(EMAIL_INPUT);
 
-    const InputEmail = screen.getByTestId('password-input');
+    const InputEmail = screen.getByTestId(PASSOWORD_INPUT);
 
     const buttonEl = screen.getByRole('button', {
       name: /entrar/i,
@@ -64,7 +67,7 @@ describe('Testa a Pagina Login', () => {
     userEvent.type(InputEmail, '123456');
     userEvent.click(buttonEl);
     await waitForElementToBeRemoved(
-      () => screen.getByTestId('password-input'),
+      () => screen.getByTestId(PASSOWORD_INPUT),
     );
 
     const { pathname } = history.location;

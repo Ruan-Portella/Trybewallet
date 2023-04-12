@@ -4,16 +4,19 @@ import Wallet from '../pages/Wallet';
 import mockData from './helpers/mockData';
 import { renderWithRedux } from './helpers/renderWith';
 
+const VALUE_INPUT = 'value-input';
+const DESCRIPTION_INPUT = 'description-input';
+
 describe('Testa o component WalletForm', () => {
   test('O campo para adicionar o valor da despesa possui o data-testid="value-input".', () => {
     renderWithRedux(<Wallet />);
-    const InputValue = screen.getByTestId('value-input');
+    const InputValue = screen.getByTestId(VALUE_INPUT);
     expect(InputValue).toBeInTheDocument();
   });
 
   test('O campo para adicionar a descrição da despesa possui o data-testid="description-input', () => {
     renderWithRedux(<Wallet />);
-    const InputDescription = screen.getByTestId('description-input');
+    const InputDescription = screen.getByTestId(DESCRIPTION_INPUT);
     expect(InputDescription).toBeInTheDocument();
   });
 
@@ -165,8 +168,8 @@ describe('Testa o component WalletForm', () => {
       json: jest.fn().mockResolvedValue(mockData),
     });
     const { store } = renderWithRedux(<Wallet />);
-    const inputName = screen.getByTestId('value-input');
-    const inputDescription = screen.getByTestId('description-input');
+    const inputName = screen.getByTestId(VALUE_INPUT);
+    const inputDescription = screen.getByTestId(DESCRIPTION_INPUT);
     const buttonEl = screen.getByRole('button', {
       name: /adicionar despesa/i,
     });
@@ -184,8 +187,8 @@ describe('Testa o component WalletForm', () => {
   });
   test('Ao clicar no botão Adicionar despesa os inputs de valor e descrição voltam ao valor inicial, contendo o valor ""', async () => {
     renderWithRedux(<Wallet />);
-    const inputName = screen.getByTestId('value-input');
-    const inputDescription = screen.getByTestId('description-input');
+    const inputName = screen.getByTestId(VALUE_INPUT);
+    const inputDescription = screen.getByTestId(DESCRIPTION_INPUT);
     const buttonEl = screen.getByRole('button', {
       name: /adicionar despesa/i,
     });

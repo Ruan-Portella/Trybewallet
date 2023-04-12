@@ -50,6 +50,7 @@ describe('A tabela possui um cabeçalho com elementos <th> com os valores Descri
   });
 
   test('A tabela é atualizada com as informações vindas da chave expense do estado global.', () => {
+    const alimentacao = 'Alimentação';
     const initialState = {
       wallet: {
         currencies: [
@@ -76,7 +77,7 @@ describe('A tabela possui um cabeçalho com elementos <th> com os valores Descri
           description: 'ruan',
           currency: 'USD',
           method: 'Dinheiro',
-          tag: 'Alimentação',
+          tag: alimentacao,
           exchangeRates: mockData,
         }],
       },
@@ -132,7 +133,7 @@ describe('A tabela possui um cabeçalho com elementos <th> com os valores Descri
           description: 'ruan',
           currency: 'USD',
           method: 'Dinheiro',
-          tag: 'Alimentação',
+          tag: 'Troco',
           exchangeRates: mockData,
         }],
       },
@@ -174,7 +175,7 @@ describe('A tabela possui um cabeçalho com elementos <th> com os valores Descri
           description: 'ruan',
           currency: 'USD',
           method: 'Dinheiro',
-          tag: 'Alimentação',
+          tag: 'Troco',
           exchangeRates: mockData,
         }],
       },
