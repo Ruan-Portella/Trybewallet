@@ -1,4 +1,4 @@
-import { getByTestId, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Wallet from '../pages/Wallet';
 import mockData from './helpers/mockData';
@@ -182,8 +182,19 @@ describe('Testa o component WalletForm', () => {
   test.skip('Ao clicar no botão Adicionar despesa cada despesa possui um id sequencial.', async () => {
 
   });
-  test.skip('Ao clicar no botão Adicionar despesa os inputs de valor e descrição voltam ao valor inicial, contendo o valor ""', async () => {
+  test('Ao clicar no botão Adicionar despesa os inputs de valor e descrição voltam ao valor inicial, contendo o valor ""', async () => {
+    renderWithRedux(<Wallet />);
+    const inputName = screen.getByTestId('value-input');
+    const inputDescription = screen.getByTestId('description-input');
+    const buttonEl = screen.getByRole('button', {
+      name: /adicionar despesa/i,
+    });
+    userEvent.type(inputName, '0');
+    userEvent.type(inputDescription, 'ruan');
+    userEvent.click(buttonEl);
 
+    expect(inputName.value).toBe('');
+    expect(inputDescription.value).toBe('');
   });
   test.skip('Ao clicar no botão Adicionar despesa é exibido o total das despesas com 2 casas decimais no elemento com o data-testid="total-field", levando em consideração a cotação localizada na chave ask.', async () => {
 
