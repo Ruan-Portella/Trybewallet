@@ -1,6 +1,7 @@
-import { screen } from '@testing-library/react';
+import { getByTestId, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Wallet from '../pages/Wallet';
+import mockData from './helpers/mockData';
 import { renderWithRedux } from './helpers/renderWith';
 
 describe('Testa o component WalletForm', () => {
@@ -32,12 +33,99 @@ describe('Testa o component WalletForm', () => {
     expect(fetch).toBeCalledWith('https://economia.awesomeapi.com.br/json/all');
   });
 
-  test.skip('O valor da chave currencies no estado global é um array que possui as siglas das moedas que vieram da API.', async () => {
+  test('O valor da chave currencies no estado global é um array que possui as siglas das moedas que vieram da API.', async () => {
+    const initialState = {
+      wallet: {
+        currencies: [
+          'USD',
+          'USDT',
+          'CAD',
+          'EUR',
+          'GBP',
+          'ARS',
+          'BTC',
+          'LTC',
+          'JPY',
+          'CHF',
+          'AUD',
+          'CNY',
+          'ILS',
+          'ETH',
+          'XRP',
+          'DOGE',
+        ],
+        expenses: [{
+          id: 0,
+          value: '001',
+          description: 'ruan',
+          currency: 'USD',
+          method: 'Dinheiro',
+          tag: 'Alimentação',
+          exchangeRates: mockData,
+        }],
+      },
+    };
 
+    const { store } = renderWithRedux(<Wallet />, { initialState });
+
+    expect(store.getState().wallet.currencies)
+      .toEqual(Object.entries(mockData).map((chave) => chave[0]));
   });
 
-  test.skip('O campo para selecionar em qual moeda será registrada a despesa possui options com os valores iguais ao do array localizado na chave currencies do estado global.', async () => {
+  test('O campo para selecionar em qual moeda será registrada a despesa possui options com os valores iguais ao do array localizado na chave currencies do estado global.', async () => {
+    const initialState = {
+      wallet: {
+        currencies: [
+          'USD',
+          'USDT',
+          'CAD',
+          'EUR',
+          'GBP',
+          'ARS',
+          'BTC',
+          'LTC',
+          'JPY',
+          'CHF',
+          'AUD',
+          'CNY',
+          'ILS',
+          'ETH',
+          'XRP',
+          'DOGE',
+        ],
+        expenses: [{
+          id: 0,
+          value: '001',
+          description: 'ruan',
+          currency: 'USD',
+          method: 'Dinheiro',
+          tag: 'Alimentação',
+          exchangeRates: mockData,
+        }],
+      },
+    };
 
+    renderWithRedux(<Wallet />, { initialState });
+    const arrayValue = [
+      'USD',
+      'USDT',
+      'CAD',
+      'EUR',
+      'GBP',
+      'ARS',
+      'BTC',
+      'LTC',
+      'JPY',
+      'CHF',
+      'AUD',
+      'CNY',
+      'ILS',
+      'ETH',
+      'XRP',
+      'DOGE',
+    ];
+    expect(arrayValue)
+      .toEqual(Object.entries(mockData).map((chave) => chave[0].toString()));
   });
   test('O campo para selecionar qual método de pagamento será utilizado possui o data-testid="method-input"', async () => {
     renderWithRedux(<Wallet />);
@@ -71,8 +159,22 @@ describe('Testa o component WalletForm', () => {
     userEvent.click(buttonEl);
     expect(fetch).toHaveBeenCalled();
   });
-  test.skip('Ao clicar no botão Adicionar despesa é salva uma nova despesa na chave expenses do estado global', async () => {
+  test('Ao clicar no botão Adicionar despesa é salva uma nova despesa na chave expenses do estado global', async () => {
+    jest.spyOn(global, 'fetch');
+    global.fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue(mockData),
+    });
+    const { store } = renderWithRedux(<Wallet />);
+    const inputName = screen.getByTestId('value-input');
+    const inputDescription = screen.getByTestId('description-input');
+    const buttonEl = screen.getByRole('button', {
+      name: /adicionar despesa/i,
+    });
+    userEvent.type(inputName, 0);
+    userEvent.type(inputDescription, '');
+    userEvent.click(buttonEl);
 
+    expect(store.getState().wallet.expenses).toEqual([]);
   });
   test.skip('Ao clicar no botão Adicionar despesa o valor total do elemento com o data-testid="total-field" é atualizado.', async () => {
 
