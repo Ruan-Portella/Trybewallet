@@ -11,7 +11,7 @@ class Table extends Component {
   };
 
   render() {
-    const { expenses } = this.props;
+    const { expenses, handleEdit } = this.props;
     return (
       <table>
         <thead>
@@ -46,13 +46,26 @@ class Table extends Component {
                 <td>
                   <button
                     type="button"
+                    data-testid="edit-btn"
+                    onClick={ () => handleEdit({
+                      id: expense.id,
+                      value: expense.value,
+                      description: expense.description,
+                      currency: expense.currency,
+                      method: expense.method,
+                      tag: expense.tag,
+                    }) }
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
                     data-testid="delete-btn"
                     onClick={ () => this.handleRemove(expense.id) }
 
                   >
                     Excluir
                   </button>
-
                 </td>
               </tr>
             </tbody>
@@ -66,6 +79,7 @@ class Table extends Component {
 Table.propTypes = {
   dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  handleEdit: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

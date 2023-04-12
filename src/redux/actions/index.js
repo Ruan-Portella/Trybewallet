@@ -1,4 +1,5 @@
 export const ADD_USER = 'ADD_USER';
+export const EDIT_USER = 'EDIT_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const SUCCEEDED_REQUEST = 'SUCCEEDED_REQUEST';
 export const SUCCEEDED_EXPENSE = 'SUCCEEDED_EXPENSE';
@@ -23,6 +24,10 @@ export const removeExpense = (payload) => ({
   payload,
 });
 
+export const editExpense = (payload) => ({
+  type: EDIT_USER,
+  payload,
+});
 export const FetchApi = () => async (dispatch) => {
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
