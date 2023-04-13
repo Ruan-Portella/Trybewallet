@@ -1,0 +1,58 @@
+/* stylelint-disable media-feature-colon-space-before */
+
+/* stylelint-disable media-feature-parentheses-space-inside */
+body {
+  background-color: #023b34;
+}
+
+header {
+  width: 100vw;
+}
+
+.Header-content {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  height: 15vh;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 80vw;
+}
+
+.Header-content > h1 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.Header-content > p {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.Header-content > span {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .Header-content > h1 {
+    display: none;
+  }
+
+  .Header-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0 auto;
+    width: 80vw;
+  }
+
+}

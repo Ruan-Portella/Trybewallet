@@ -51,10 +51,14 @@ export const ExpenseSaved = ({
   try {
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await response.json();
+    let NewInput = '-';
+    if (InputDescription !== '') {
+      NewInput = InputDescription;
+    }
     const expense = {
       id: expenses.length,
       value: InputValue,
-      description: InputDescription,
+      description: NewInput,
       currency: InputCurrency,
       method: InputMethod,
       tag: InputTag,

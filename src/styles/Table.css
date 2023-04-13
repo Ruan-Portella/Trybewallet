@@ -1,0 +1,36 @@
+/* stylelint-disable block-no-empty */
+
+/* stylelint-disable media-feature-colon-space-before */
+
+/* stylelint-disable media-feature-parentheses-space-inside */
+.TableMain {
+  flex-wrap: wrap;
+  width: 100vw;
+}
+
+.TableContentMain {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 90vw;
+}
+
+table {
+  text-align: center;
+}
+
+th {
+  border-bottom: 1px solid white;
+  padding: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+  .TableContentMain {
+    overflow-x: scroll;
+    width: 80vw;
+  }
+}

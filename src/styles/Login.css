@@ -1,0 +1,181 @@
+/* stylelint-disable selector-attribute-brackets-space-inside */
+
+/* stylelint-disable selector-pseudo-class-parentheses-space-inside */
+
+/* stylelint-disable media-feature-colon-space-before */
+
+/* stylelint-disable media-feature-parentheses-space-inside */
+
+/* stylelint-disable font-family-name-quotes */
+
+/* stylelint-disable at-rule-semicolon-space-before */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Poppins:wght@600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+.main-login {
+  align-items: center;
+  background-color: #023b34;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.left-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 50vw;
+}
+
+.left-login > section > h1 {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 3vw;
+  justify-content: center;
+}
+
+.left-login-image {
+  width: 45vw;
+}
+
+.right-login {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 50vw;
+}
+
+.card-login {
+  align-items: center;
+  background: #025a4f;
+  border-radius: 20px;
+  box-shadow: 0, 10px, 40px, #00000056;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px 35px;
+  width: 60%;
+}
+
+.card-login > h2 {
+  color: #025a4f;
+  font-weight: 800;
+  margin: 0;
+}
+
+.textField {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0;
+  width: 90%;
+}
+
+.textField > input {
+  background: #027d6f;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0, 10px, 40px, #00000056;
+  box-sizing: border-box;
+  color: white;
+  font-size: 12pt;
+  height: 5vh;
+  outline: none;
+  padding: 15px;
+  width: 100%;
+}
+
+.textField > label {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.textField > input::placeholder {
+  color: white;
+}
+
+.btn-login {
+  background: aquamarine;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0, 10px, 40px, -12px, #027d6f;
+  color: #023b34;
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin: 25px;
+  outline: none;
+  padding: 16px 0;
+  text-transform: uppercase;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.btn-login:disabled {
+  background-color: rgba(127, 255, 212, 0.239);
+}
+
+.btn-login:not([disabled]):hover {
+  background-color: #1ae1ca;
+  border: none;
+}
+
+.asteristico {
+  color: rgba(255, 0, 0, 0.545);
+}
+
+.Error {
+  color: rgba(255, 0, 0, 0.545);
+}
+
+@media only screen and (max-width: 950px) {
+
+  .card-login {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .main-login {
+    flex-direction: column;
+  }
+
+  .left-login > section > h1 {
+    display: none;
+  }
+
+  .left-login {
+    height: auto;
+    width: 100%;
+  }
+
+  .right-login {
+    height: auto;
+    width: 100%;
+  }
+
+  .left-login-image {
+    margin-bottom: 20px;
+    width: 40vh;
+  }
+
+  .card-login {
+    width: 90%;
+  }
+}

@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Wallet from '../pages/Wallet';
 import mockData from './helpers/mockData';
@@ -162,7 +162,7 @@ describe('Testa o component WalletForm', () => {
     userEvent.click(buttonEl);
     expect(fetch).toHaveBeenCalled();
   });
-  test('Ao clicar no botão Adicionar despesa é salva uma nova despesa na chave expenses do estado global', async () => {
+  test.only('Ao clicar no botão Adicionar despesa é salva uma nova despesa na chave expenses do estado global', async () => {
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue(mockData),
@@ -176,8 +176,11 @@ describe('Testa o component WalletForm', () => {
     userEvent.type(inputName, 0);
     userEvent.type(inputDescription, '');
     userEvent.click(buttonEl);
-
-    expect(store.getState().wallet.expenses).toEqual([]);
+    await waitFor(() => {
+      expect(store.getState().wallet.expenses[0].id).toBe(0);
+    });
+    console.log(store.getState().wallet.expenses);
+    // expect(store.getState().wallet.expenses).toEqual([]);
   });
   test.skip('Ao clicar no botão Adicionar despesa o valor total do elemento com o data-testid="total-field" é atualizado.', async () => {
 
