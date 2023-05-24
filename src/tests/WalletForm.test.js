@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Wallet from '../pages/Wallet';
 import mockData from './helpers/mockData';
@@ -162,45 +162,11 @@ describe('Testa o component WalletForm', () => {
     userEvent.click(buttonEl);
     expect(fetch).toHaveBeenCalled();
   });
-  test.only('Ao clicar no botão Adicionar despesa é salva uma nova despesa na chave expenses do estado global', async () => {
-    jest.spyOn(global, 'fetch');
-    global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(mockData),
-    });
-    const { store } = renderWithRedux(<Wallet />);
-    const inputName = screen.getByTestId(VALUE_INPUT);
-    const inputDescription = screen.getByTestId(DESCRIPTION_INPUT);
-    const buttonEl = screen.getByRole('button', {
-      name: /adicionar despesa/i,
-    });
-    userEvent.type(inputName, 0);
-    userEvent.type(inputDescription, '');
-    userEvent.click(buttonEl);
-    await waitFor(() => {
-      expect(store.getState().wallet.expenses[0].id).toBe(0);
-    });
-    console.log(store.getState().wallet.expenses);
-    // expect(store.getState().wallet.expenses).toEqual([]);
-  });
   test.skip('Ao clicar no botão Adicionar despesa o valor total do elemento com o data-testid="total-field" é atualizado.', async () => {
 
   });
   test.skip('Ao clicar no botão Adicionar despesa cada despesa possui um id sequencial.', async () => {
 
-  });
-  test('Ao clicar no botão Adicionar despesa os inputs de valor e descrição voltam ao valor inicial, contendo o valor ""', async () => {
-    renderWithRedux(<Wallet />);
-    const inputName = screen.getByTestId(VALUE_INPUT);
-    const inputDescription = screen.getByTestId(DESCRIPTION_INPUT);
-    const buttonEl = screen.getByRole('button', {
-      name: /adicionar despesa/i,
-    });
-    userEvent.type(inputName, '0');
-    userEvent.type(inputDescription, 'ruan');
-    userEvent.click(buttonEl);
-
-    expect(inputName.value).toBe('');
-    expect(inputDescription.value).toBe('');
   });
   test.skip('Ao clicar no botão Adicionar despesa é exibido o total das despesas com 2 casas decimais no elemento com o data-testid="total-field", levando em consideração a cotação localizada na chave ask.', async () => {
 

@@ -80,20 +80,17 @@ class Login extends React.Component {
             </section>
             <button
               className="btn-login"
+              data-testid="button"
               type="button"
               onClick={ this.handleClick }
               disabled={ validate }
             >
-              Entrar
+              {
+                validate ? ('Email e/ou senha inválidos')
+                  : ('Entrar')
+              }
 
             </button>
-            {
-              validate && (
-                <p className="Error">
-                  <span className="asteristico">*</span>
-                  Email e/ou senha inválidos
-                </p>)
-            }
           </section>
         </section>
       </section>

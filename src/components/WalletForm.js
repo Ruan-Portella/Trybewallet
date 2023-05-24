@@ -28,7 +28,7 @@ class WalletForm extends Component {
   validateFields = () => {
     const { InputValue } = this.state;
     const MAX_LENGTH = 1;
-    const validateValue = InputValue.length >= MAX_LENGTH;
+    const validateValue = InputValue >= MAX_LENGTH;
     this.setState({
       validate: !(validateValue),
     });
@@ -52,6 +52,7 @@ class WalletForm extends Component {
       InputCurrency: 'USD',
       InputMethod: 'Dinheiro',
       InputTag: 'Alimentação',
+      validate: true,
     });
   };
 
@@ -64,6 +65,7 @@ class WalletForm extends Component {
       InputTag: tag,
       editForm: true,
       idEdited: id,
+      validate: false,
     });
   };
 
@@ -85,6 +87,7 @@ class WalletForm extends Component {
       InputTag: 'Alimentação',
       editForm: false,
       idEdited: 0,
+      validate: true,
     });
   };
 
@@ -101,6 +104,7 @@ class WalletForm extends Component {
               <input
                 id="value"
                 placeholder="0"
+                min={ 0 }
                 data-testid="value-input"
                 type="number"
                 onChange={ this.handleChange }
@@ -182,6 +186,7 @@ class WalletForm extends Component {
                   <button
                     type="button"
                     onClick={ () => this.handleEdited(idEdited) }
+                    disabled={ validate }
                   >
                     Editar despesa
 
@@ -192,18 +197,14 @@ class WalletForm extends Component {
                     onClick={ this.handleAdd }
                     disabled={ validate }
                   >
-                    Adicionar despesa
+                    {
+                      validate ? ('Insira um Valor maior que 0')
+                        : ('Adicionar despesa')
+                    }
 
                   </button>)
               }
             </section>
-            {
-              validate && (
-                <p className="Error">
-                  <span className="asteristico">*</span>
-                  Insira um Valor maior que 0
-                </p>)
-            }
           </section>
         </section>
         <Table handleEdit={ this.handleEdit } />

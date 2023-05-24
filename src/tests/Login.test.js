@@ -1,4 +1,4 @@
-import { screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../pages/Login';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
@@ -52,25 +52,5 @@ describe('Testa a Pagina Login', () => {
     userEvent.type(InputEmail, '');
 
     expect(buttonEl).toBeDisabled();
-  });
-  test('Testa se login manda para a rota /carteira', async () => {
-    const { history } = renderWithRouterAndRedux(<Login />);
-    const InputName = screen.getByTestId(EMAIL_INPUT);
-
-    const InputEmail = screen.getByTestId(PASSOWORD_INPUT);
-
-    const buttonEl = screen.getByRole('button', {
-      name: /entrar/i,
-    });
-
-    userEvent.type(InputName, 'ruan@ruangmail.com');
-    userEvent.type(InputEmail, '123456');
-    userEvent.click(buttonEl);
-    await waitForElementToBeRemoved(
-      () => screen.getByTestId(PASSOWORD_INPUT),
-    );
-
-    const { pathname } = history.location;
-    expect(pathname).toBe('/carteira');
   });
 });

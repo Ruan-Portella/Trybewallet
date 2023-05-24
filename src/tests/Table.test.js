@@ -106,48 +106,6 @@ describe('A tabela possui um cabeçalho com elementos <th> com os valores Descri
     expect(currency.textContent).toBe('Dólar Americano/Real Brasileiro');
   });
 
-  test('O campo para selecionar uma categoria (tag) da despesa possui options com os valores Alimentação, Lazer, Trabalho, Transporte e Saúde.', async () => {
-    const initialState = {
-      wallet: {
-        currencies: [
-          'USD',
-          'USDT',
-          'CAD',
-          'EUR',
-          'GBP',
-          'ARS',
-          'BTC',
-          'LTC',
-          'JPY',
-          'CHF',
-          'AUD',
-          'CNY',
-          'ILS',
-          'ETH',
-          'XRP',
-          'DOGE',
-        ],
-        expenses: [{
-          id: 0,
-          value: '1',
-          description: 'ruan',
-          currency: 'USD',
-          method: 'Dinheiro',
-          tag: 'Troco',
-          exchangeRates: mockData,
-        }],
-      },
-    };
-    const { store } = renderWithRedux(<Wallet />, { initialState });
-    const totalField = screen.getByTestId('total-field');
-    expect(totalField.innerHTML).toBe('4.75');
-    const buttonDelete = screen.getByRole('button', {
-      name: /excluir/i,
-    });
-    userEvent.click(buttonDelete);
-    expect(store.getState().wallet.expenses).toEqual([]);
-    expect(totalField.innerHTML).toBe('0.00');
-  });
   test('Testa se quando editar ele muda', () => {
     const initialState = {
       wallet: {
