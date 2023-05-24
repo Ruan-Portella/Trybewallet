@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/Trybewallet/static/css/main.7490136c.css",
+    "main.js": "/Trybewallet/static/js/main.bf92a1c9.js",
+    "static/media/undraw_printing_invoices_-5-r4r.svg": "/Trybewallet/static/media/undraw_printing_invoices_-5-r4r.65c124293163fc84b878dbc513e4c418.svg",
+    "index.html": "/Trybewallet/index.html",
+    "main.7490136c.css.map": "/Trybewallet/static/css/main.7490136c.css.map",
+    "main.bf92a1c9.js.map": "/Trybewallet/static/js/main.bf92a1c9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7490136c.css",
+    "static/js/main.bf92a1c9.js"
+  ]
+}
